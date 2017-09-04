@@ -14,13 +14,13 @@ export class ElectronService {
   constructor() {
     // Conditional imports
     if (this.isElectron()) {
-      this.ipcRenderer = window.require('electron').ipcRenderer;
-      this.childProcess = window.require('child_process');
+      this.ipcRenderer = (window as any).require('electron').ipcRenderer;
+      this.childProcess = (window as any).require('child_process');
     }
   }
 
   isElectron = () => {
-    return window && window.process && window.process.type;
+    return window && (window as any).process && (window as any).process.type;
   }
 
 }
